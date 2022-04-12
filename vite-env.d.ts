@@ -1,0 +1,1 @@
+declare const __APP_ENV__: 'test' | 'staging' | 'prod' | 'visualizer'

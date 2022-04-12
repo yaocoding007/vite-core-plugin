@@ -1,0 +1,10 @@
+# 关闭跨域限制
+* resCors://enable
+
+# # 指定相关地址走本地，其他走远程「window系统把域名前“//”去掉」
+www.baidu.com/ 127.0.0.1:3000/
+www.baidu.com/%23/ 127.0.0.1:3000/%23/ resCors://enable
+www.baidu.com/node_modules/ 127.0.0.1:3000/node_modules/ resCors://enable
+www.baidu.com/src/ 127.0.0.1:3000/src/ resCors://enable
+www.baidu.com/@vite/ 127.0.0.1:3000/@vite/ resCors://enable
+www.baidu.com/@id/ 127.0.0.1:3000/@id/ resCors://enable

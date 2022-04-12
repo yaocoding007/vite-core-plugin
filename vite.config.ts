@@ -22,6 +22,12 @@ export default defineConfig(({command, mode}) => {
   const isProd = ['prod', 'visualizer'].includes(scriptCommandPrarm)
 
   return {
+    server: {
+      hmr: {
+        protocol: 'ws',
+        host: '127.0.0.1'
+      }
+    },
     define: {
       'process.env': JSON.stringify({
         __APP_ENV__: scriptCommandPrarm
