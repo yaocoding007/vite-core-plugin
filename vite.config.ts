@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { viteVConsole } from 'vite-plugin-vconsole';
+import { visualizer } from 'rollup-plugin-visualizer';
 import {resolve} from 'path'
-
 
 const getCommandParams = () => {
   const {original} = JSON.parse(process.env.npm_config_argv);
@@ -19,7 +19,7 @@ export default defineConfig(({command, mode}) => {
   console.log('mode', mode)
   const scriptCommandPrarm = getCommandParams();
   console.log('scriptCommandPrarm', scriptCommandPrarm)
-  const isProd = scriptCommandPrarm === 'prod';
+  const isProd = ['prod', 'visualizer'].includes(scriptCommandPrarm)
 
   return {
     define: {
@@ -33,7 +33,8 @@ export default defineConfig(({command, mode}) => {
         entry: resolve(__dirname, 'src/main.tsx'), // or you can use entry: [path.resolve('src/main.ts')]
         localEnabled: !isProd,
         enabled: !isProd
-      })
+      }),
+      scriptCommandPrarm === 'visualizer' && visualizer()
     ]
   }
 })
