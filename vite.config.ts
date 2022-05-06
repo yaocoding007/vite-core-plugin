@@ -3,38 +3,21 @@ import react from '@vitejs/plugin-react'
 import { viteVConsole } from 'vite-plugin-vconsole';
 import { visualizer } from 'rollup-plugin-visualizer';
 import {resolve} from 'path'
+import SetEnvByCommandArg, { getCommandArgv } from 'vite-plugin-env-command';
 
 import DemoPlugin from './demo-plugin'
 
-const getCommandParams = () => {
-  const {original} = JSON.parse(process.env.npm_config_argv);
-  const commandAll = original[0];
-  const [_, env] = commandAll.split(':');
-  return env || 'test'
-}
-
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
-  // command vite -> server vite build -> build
+  // command vite -> server|build
   // mode development | production
   console.log('command', command)
   console.log('mode', mode)
-  const scriptCommandPrarm = getCommandParams();
-  console.log('scriptCommandPrarm', scriptCommandPrarm)
-  const isProd = ['prod', 'visualizer'].includes(scriptCommandPrarm)
+  const scriptCommandArg = getCommandArgv();
+  console.log('scriptCommandPrarm', scriptCommandArg)
+  const isProd = ['prod', 'visualizer'].includes(scriptCommandArg)
 
   return {
-    server: {
-      hmr: {
-        protocol: 'ws',
-        host: '127.0.0.1'
-      }
-    },
-    define: {
-      'process.env': JSON.stringify({
-        __APP_ENV__: scriptCommandPrarm
-      }),
-    },
     plugins: [
       react(),
       viteVConsole({
@@ -42,8 +25,9 @@ export default defineConfig(({command, mode}) => {
         localEnabled: !isProd,
         enabled: !isProd
       }),
-      scriptCommandPrarm === 'visualizer' && visualizer(),
-      DemoPlugin()
+      scriptCommandArg === 'visualizer' && visualizer(),
+      DemoPlugin(),
+      SetEnvByCommandArg({})
     ]
   }
 })

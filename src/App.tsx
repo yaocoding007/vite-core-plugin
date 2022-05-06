@@ -1,11 +1,12 @@
-import { useState } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
       <h1>demo</h1>
+      <section>
+        APP_ENV: {process.env.APP_ENV}
+      </section>
     </div>
   )
 }
