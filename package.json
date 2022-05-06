@@ -12,12 +12,18 @@
     "build:staging": "tsc && vite build",
     "build:prod": "tsc && vite build",
     "build:visualizer": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:demo": "node demo/server.js"
   },
   "dependencies": {
+    "@vue/compiler-dom": "^3.2.33",
+    "@vue/compiler-sfc": "^3.2.33",
+    "koa": "^2.13.4",
+    "opn": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "vconsole": "^3.14.5"
+    "vconsole": "^3.14.5",
+    "vue": "^3.2.33"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
