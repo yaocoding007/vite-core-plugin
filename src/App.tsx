@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{JSON.stringify(process.env)}</h1>
+      <h1>demo</h1>
     </div>
   )
 }

@@ -4,6 +4,8 @@ import { viteVConsole } from 'vite-plugin-vconsole';
 import { visualizer } from 'rollup-plugin-visualizer';
 import {resolve} from 'path'
 
+import DemoPlugin from './demo-plugin'
+
 const getCommandParams = () => {
   const {original} = JSON.parse(process.env.npm_config_argv);
   const commandAll = original[0];
@@ -40,7 +42,8 @@ export default defineConfig(({command, mode}) => {
         localEnabled: !isProd,
         enabled: !isProd
       }),
-      scriptCommandPrarm === 'visualizer' && visualizer()
+      scriptCommandPrarm === 'visualizer' && visualizer(),
+      DemoPlugin()
     ]
   }
 })
