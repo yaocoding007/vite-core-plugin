@@ -160,6 +160,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ### 实现一个简易的 vite
 
 ```js
+// 项目中安装依赖 然后 `yarn dev:demo` 可以看效果
+
 const Koa = require('koa')
 const app = new Koa()
 
